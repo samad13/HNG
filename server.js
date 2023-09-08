@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     const currentDate = now.toISOString().slice(0, 19) + 'Z';
 
     //git file
-    const githubFileUrl = 'https://github.com/samad13/';
+    const githubFileUrl = 'https://github.com/samad13/HNG/blob/master/server.js';
 
     //git repo
     const githubRepoUrl = 'https://github.com/samad13/HNG';
