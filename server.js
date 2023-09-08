@@ -23,7 +23,8 @@ app.get('/', (req, res) => {
         utc_time: currentDate,
         track,
         github_file_url: githubFileUrl,
-        github_repo_url: githubRepoUrl
+        github_repo_url: githubRepoUrl,
+        status_code: 200
     }
     res.json(response)
 })
