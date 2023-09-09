@@ -1,17 +1,12 @@
 const express = require('express');
 const app = express();
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
+    const { slack_name, track } = req.query;
+    const daysOfTheWeek = ['Sunday', 'Monday', "Tuesday", "Wednesday", "Thursday", "FRiday", "Saturday"];
 
-    const currentDate = now.toISOString().slice(0, 19) + 'Z';
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const currentDay = daysOfWeek[new Date().getDay()];
-
-    // Get the current UTC time
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - 2); // Adjust for +/-2 minutes
-    const utcTime = now.toISOString();
-
+    const currentDay = new Date().toLocaleString('en-US', { weekday: 'long' });
+    const currentDate = new Date().toISOString();
 
     //git file
     const githubFileUrl = 'https://github.com/samad13/HNG/blob/master/server.js';
@@ -21,7 +16,7 @@ app.get('/api', (req, res) => {
 
     const response = {
         slack_name,
-        current_day: currentDay,
+        currentDay: currentDay,
         utc_time: currentDate,
         track,
         github_file_url: githubFileUrl,
@@ -43,3 +38,8 @@ app.get('/api', (req, res) => {
 
 
 
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
