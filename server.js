@@ -1,41 +1,29 @@
 const express = require('express');
 const app = express();
+const moment = require('moment')
+
 
 app.get('/api', (req, res) => {
-    const { slack_name, track } = req.query;
-    const daysOfTheWeek = ['Sunday', 'Monday', "Tuesday", "Wednesday", "Thursday", "FRiday", "Saturday"];
+    const { slack_name, track } = req.query
 
-    const currentDay = new Date().toLocaleString('en-US', { weekday: 'long' });
-    const currentDate = new Date().toISOString();
+    const current_day = moment().day()
+    const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const utc_time = moment.utc().format()
 
-    //git file
-    const githubFileUrl = 'https://github.com/samad13/HNG/blob/master/server.js';
-
-    //git repo
-    const githubRepoUrl = 'https://github.com/samad13/HNG';
-
-    const response = {
+    const github_file_url = 'https://github.com/samad13/HNG/blob/master/server.js'
+    const github_repo_url = 'https://github.com/samad13/HNG'
+    const responseObject = {
         slack_name,
-        currentDay: currentDay,
-        utc_time: currentDate,
+        current_day: weekDays[current_day],
+        utc_time,
         track,
-        github_file_url: githubFileUrl,
-        github_repo_url: githubRepoUrl,
+        github_file_url,
+        github_repo_url,
         status_code: 200
     }
-    res.json(response)
+
+    res.status(200).json(responseObject)
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 const port = process.env.PORT || 3000
