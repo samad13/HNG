@@ -1,15 +1,16 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-    const { slack_name, track } = req.query;
-    const daysOfTheWeek = ['Sunday', 'Monday', "Tuesday", "Wednesday", "Thursday", "FRiday", "Saturday"];
-
-    const currentDay = new Date().toLocaleString('en-US', { weekday: 'long' });
-    const now = new Date();
-
+app.get('/api', (req, res) => {
 
     const currentDate = now.toISOString().slice(0, 19) + 'Z';
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const currentDay = daysOfWeek[new Date().getDay()];
+
+    // Get the current UTC time
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - 2); // Adjust for +/-2 minutes
+    const utcTime = now.toISOString();
 
 
     //git file
