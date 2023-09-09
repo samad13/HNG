@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 
     const currentDate = now.toISOString().slice(0, 19) + 'Z';
 
+
     //git file
     const githubFileUrl = 'https://github.com/samad13/HNG/blob/master/server.js';
 
@@ -19,7 +20,7 @@ app.get('/', (req, res) => {
 
     const response = {
         slack_name,
-        currentDay: currentDay,
+        current_day: currentDay,
         utc_time: currentDate,
         track,
         github_file_url: githubFileUrl,
