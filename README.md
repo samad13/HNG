@@ -7,8 +7,7 @@ The objective of this task is to build a simple REST API capable of performing C
 
 ## API Documentation
 
-- [Documentation](./DOCUMENTATION.md)
-
+- [Documentation](./Documentation.md)
 ## Available Endpoints
 
 | Route | Description |
